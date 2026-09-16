@@ -400,6 +400,7 @@ export const ModelName = {
   Category: 'Category',
   Product: 'Product',
   Order: 'Order',
+  TableSession: 'TableSession',
   OrderProducts: 'OrderProducts'
 } as const
 
@@ -416,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "category" | "product" | "order" | "orderProducts"
+    modelProps: "category" | "product" | "order" | "tableSession" | "orderProducts"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -642,6 +643,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TableSession: {
+      payload: Prisma.$TableSessionPayload<ExtArgs>
+      fields: Prisma.TableSessionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TableSessionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TableSessionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TableSessionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TableSessionPayload>
+        }
+        findFirst: {
+          args: Prisma.TableSessionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TableSessionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TableSessionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TableSessionPayload>
+        }
+        findMany: {
+          args: Prisma.TableSessionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TableSessionPayload>[]
+        }
+        create: {
+          args: Prisma.TableSessionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TableSessionPayload>
+        }
+        createMany: {
+          args: Prisma.TableSessionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TableSessionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TableSessionPayload>[]
+        }
+        delete: {
+          args: Prisma.TableSessionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TableSessionPayload>
+        }
+        update: {
+          args: Prisma.TableSessionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TableSessionPayload>
+        }
+        deleteMany: {
+          args: Prisma.TableSessionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TableSessionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TableSessionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TableSessionPayload>[]
+        }
+        upsert: {
+          args: Prisma.TableSessionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TableSessionPayload>
+        }
+        aggregate: {
+          args: Prisma.TableSessionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTableSession>
+        }
+        groupBy: {
+          args: Prisma.TableSessionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TableSessionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TableSessionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TableSessionCountAggregateOutputType> | number
+        }
+      }
+    }
     OrderProducts: {
       payload: Prisma.$OrderProductsPayload<ExtArgs>
       fields: Prisma.OrderProductsFieldRefs
@@ -781,10 +856,23 @@ export const OrderScalarFieldEnum = {
   name: 'name',
   total: 'total',
   date: 'date',
-  status: 'status'
+  status: 'status',
+  completedAt: 'completedAt',
+  tableSessionId: 'tableSessionId'
 } as const
 
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const TableSessionScalarFieldEnum = {
+  id: 'id',
+  tableNumber: 'tableNumber',
+  createdAt: 'createdAt',
+  expiresAt: 'expiresAt',
+  closedAt: 'closedAt'
+} as const
+
+export type TableSessionScalarFieldEnum = (typeof TableSessionScalarFieldEnum)[keyof typeof TableSessionScalarFieldEnum]
 
 
 export const OrderProductsScalarFieldEnum = {
@@ -812,6 +900,14 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 
@@ -1036,6 +1132,7 @@ export type GlobalOmitConfig = {
   category?: Prisma.CategoryOmit
   product?: Prisma.ProductOmit
   order?: Prisma.OrderOmit
+  tableSession?: Prisma.TableSessionOmit
   orderProducts?: Prisma.OrderProductsOmit
 }
 

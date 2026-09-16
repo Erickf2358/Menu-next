@@ -1,12 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/src/lib/prisma";
+import { getCurrentTableSession } from "@/actions/table-session-actions";
+import TableSessionGate from "@/components/order/TableSessionGate";
 
 async function getCategories() {
   return await prisma.category.findMany();
 }
 
 export default async function Home() {
+  const tableSession = await getCurrentTableSession();
+
+  if (!tableSession) {
+    return <TableSessionGate />;
+  }
+
   const categories = await getCategories();
 
   return (

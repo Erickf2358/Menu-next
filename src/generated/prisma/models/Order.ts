@@ -42,6 +42,8 @@ export type OrderMinAggregateOutputType = {
   total: number | null
   date: Date | null
   status: boolean | null
+  completedAt: Date | null
+  tableSessionId: string | null
 }
 
 export type OrderMaxAggregateOutputType = {
@@ -50,6 +52,8 @@ export type OrderMaxAggregateOutputType = {
   total: number | null
   date: Date | null
   status: boolean | null
+  completedAt: Date | null
+  tableSessionId: string | null
 }
 
 export type OrderCountAggregateOutputType = {
@@ -58,6 +62,8 @@ export type OrderCountAggregateOutputType = {
   total: number
   date: number
   status: number
+  completedAt: number
+  tableSessionId: number
   _all: number
 }
 
@@ -78,6 +84,8 @@ export type OrderMinAggregateInputType = {
   total?: true
   date?: true
   status?: true
+  completedAt?: true
+  tableSessionId?: true
 }
 
 export type OrderMaxAggregateInputType = {
@@ -86,6 +94,8 @@ export type OrderMaxAggregateInputType = {
   total?: true
   date?: true
   status?: true
+  completedAt?: true
+  tableSessionId?: true
 }
 
 export type OrderCountAggregateInputType = {
@@ -94,6 +104,8 @@ export type OrderCountAggregateInputType = {
   total?: true
   date?: true
   status?: true
+  completedAt?: true
+  tableSessionId?: true
   _all?: true
 }
 
@@ -189,6 +201,8 @@ export type OrderGroupByOutputType = {
   total: number
   date: Date
   status: boolean
+  completedAt: Date | null
+  tableSessionId: string
   _count: OrderCountAggregateOutputType | null
   _avg: OrderAvgAggregateOutputType | null
   _sum: OrderSumAggregateOutputType | null
@@ -220,6 +234,9 @@ export type OrderWhereInput = {
   total?: Prisma.FloatFilter<"Order"> | number
   date?: Prisma.DateTimeFilter<"Order"> | Date | string
   status?: Prisma.BoolFilter<"Order"> | boolean
+  completedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  tableSessionId?: Prisma.StringFilter<"Order"> | string
+  tableSession?: Prisma.XOR<Prisma.TableSessionScalarRelationFilter, Prisma.TableSessionWhereInput>
   orderProducts?: Prisma.OrderProductsListRelationFilter
 }
 
@@ -229,6 +246,9 @@ export type OrderOrderByWithRelationInput = {
   total?: Prisma.SortOrder
   date?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  tableSessionId?: Prisma.SortOrder
+  tableSession?: Prisma.TableSessionOrderByWithRelationInput
   orderProducts?: Prisma.OrderProductsOrderByRelationAggregateInput
 }
 
@@ -241,6 +261,9 @@ export type OrderWhereUniqueInput = Prisma.AtLeast<{
   total?: Prisma.FloatFilter<"Order"> | number
   date?: Prisma.DateTimeFilter<"Order"> | Date | string
   status?: Prisma.BoolFilter<"Order"> | boolean
+  completedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  tableSessionId?: Prisma.StringFilter<"Order"> | string
+  tableSession?: Prisma.XOR<Prisma.TableSessionScalarRelationFilter, Prisma.TableSessionWhereInput>
   orderProducts?: Prisma.OrderProductsListRelationFilter
 }, "id">
 
@@ -250,6 +273,8 @@ export type OrderOrderByWithAggregationInput = {
   total?: Prisma.SortOrder
   date?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  tableSessionId?: Prisma.SortOrder
   _count?: Prisma.OrderCountOrderByAggregateInput
   _avg?: Prisma.OrderAvgOrderByAggregateInput
   _max?: Prisma.OrderMaxOrderByAggregateInput
@@ -266,6 +291,8 @@ export type OrderScalarWhereWithAggregatesInput = {
   total?: Prisma.FloatWithAggregatesFilter<"Order"> | number
   date?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
   status?: Prisma.BoolWithAggregatesFilter<"Order"> | boolean
+  completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
+  tableSessionId?: Prisma.StringWithAggregatesFilter<"Order"> | string
 }
 
 export type OrderCreateInput = {
@@ -273,6 +300,8 @@ export type OrderCreateInput = {
   total: number
   date?: Date | string
   status?: boolean
+  completedAt?: Date | string | null
+  tableSession: Prisma.TableSessionCreateNestedOneWithoutOrdersInput
   orderProducts?: Prisma.OrderProductsCreateNestedManyWithoutOrderInput
 }
 
@@ -282,6 +311,8 @@ export type OrderUncheckedCreateInput = {
   total: number
   date?: Date | string
   status?: boolean
+  completedAt?: Date | string | null
+  tableSessionId: string
   orderProducts?: Prisma.OrderProductsUncheckedCreateNestedManyWithoutOrderInput
 }
 
@@ -290,6 +321,8 @@ export type OrderUpdateInput = {
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tableSession?: Prisma.TableSessionUpdateOneRequiredWithoutOrdersNestedInput
   orderProducts?: Prisma.OrderProductsUpdateManyWithoutOrderNestedInput
 }
 
@@ -299,6 +332,8 @@ export type OrderUncheckedUpdateInput = {
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tableSessionId?: Prisma.StringFieldUpdateOperationsInput | string
   orderProducts?: Prisma.OrderProductsUncheckedUpdateManyWithoutOrderNestedInput
 }
 
@@ -308,6 +343,8 @@ export type OrderCreateManyInput = {
   total: number
   date?: Date | string
   status?: boolean
+  completedAt?: Date | string | null
+  tableSessionId: string
 }
 
 export type OrderUpdateManyMutationInput = {
@@ -315,6 +352,7 @@ export type OrderUpdateManyMutationInput = {
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type OrderUncheckedUpdateManyInput = {
@@ -323,6 +361,8 @@ export type OrderUncheckedUpdateManyInput = {
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tableSessionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type OrderCountOrderByAggregateInput = {
@@ -331,6 +371,8 @@ export type OrderCountOrderByAggregateInput = {
   total?: Prisma.SortOrder
   date?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrder
+  tableSessionId?: Prisma.SortOrder
 }
 
 export type OrderAvgOrderByAggregateInput = {
@@ -344,6 +386,8 @@ export type OrderMaxOrderByAggregateInput = {
   total?: Prisma.SortOrder
   date?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrder
+  tableSessionId?: Prisma.SortOrder
 }
 
 export type OrderMinOrderByAggregateInput = {
@@ -352,11 +396,23 @@ export type OrderMinOrderByAggregateInput = {
   total?: Prisma.SortOrder
   date?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrder
+  tableSessionId?: Prisma.SortOrder
 }
 
 export type OrderSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   total?: Prisma.SortOrder
+}
+
+export type OrderListRelationFilter = {
+  every?: Prisma.OrderWhereInput
+  some?: Prisma.OrderWhereInput
+  none?: Prisma.OrderWhereInput
+}
+
+export type OrderOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type OrderScalarRelationFilter = {
@@ -370,6 +426,52 @@ export type DateTimeFieldUpdateOperationsInput = {
 
 export type BoolFieldUpdateOperationsInput = {
   set?: boolean
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type OrderCreateNestedManyWithoutTableSessionInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutTableSessionInput, Prisma.OrderUncheckedCreateWithoutTableSessionInput> | Prisma.OrderCreateWithoutTableSessionInput[] | Prisma.OrderUncheckedCreateWithoutTableSessionInput[]
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutTableSessionInput | Prisma.OrderCreateOrConnectWithoutTableSessionInput[]
+  createMany?: Prisma.OrderCreateManyTableSessionInputEnvelope
+  connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+}
+
+export type OrderUncheckedCreateNestedManyWithoutTableSessionInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutTableSessionInput, Prisma.OrderUncheckedCreateWithoutTableSessionInput> | Prisma.OrderCreateWithoutTableSessionInput[] | Prisma.OrderUncheckedCreateWithoutTableSessionInput[]
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutTableSessionInput | Prisma.OrderCreateOrConnectWithoutTableSessionInput[]
+  createMany?: Prisma.OrderCreateManyTableSessionInputEnvelope
+  connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+}
+
+export type OrderUpdateManyWithoutTableSessionNestedInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutTableSessionInput, Prisma.OrderUncheckedCreateWithoutTableSessionInput> | Prisma.OrderCreateWithoutTableSessionInput[] | Prisma.OrderUncheckedCreateWithoutTableSessionInput[]
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutTableSessionInput | Prisma.OrderCreateOrConnectWithoutTableSessionInput[]
+  upsert?: Prisma.OrderUpsertWithWhereUniqueWithoutTableSessionInput | Prisma.OrderUpsertWithWhereUniqueWithoutTableSessionInput[]
+  createMany?: Prisma.OrderCreateManyTableSessionInputEnvelope
+  set?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  disconnect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  delete?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  update?: Prisma.OrderUpdateWithWhereUniqueWithoutTableSessionInput | Prisma.OrderUpdateWithWhereUniqueWithoutTableSessionInput[]
+  updateMany?: Prisma.OrderUpdateManyWithWhereWithoutTableSessionInput | Prisma.OrderUpdateManyWithWhereWithoutTableSessionInput[]
+  deleteMany?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
+}
+
+export type OrderUncheckedUpdateManyWithoutTableSessionNestedInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutTableSessionInput, Prisma.OrderUncheckedCreateWithoutTableSessionInput> | Prisma.OrderCreateWithoutTableSessionInput[] | Prisma.OrderUncheckedCreateWithoutTableSessionInput[]
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutTableSessionInput | Prisma.OrderCreateOrConnectWithoutTableSessionInput[]
+  upsert?: Prisma.OrderUpsertWithWhereUniqueWithoutTableSessionInput | Prisma.OrderUpsertWithWhereUniqueWithoutTableSessionInput[]
+  createMany?: Prisma.OrderCreateManyTableSessionInputEnvelope
+  set?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  disconnect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  delete?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
+  update?: Prisma.OrderUpdateWithWhereUniqueWithoutTableSessionInput | Prisma.OrderUpdateWithWhereUniqueWithoutTableSessionInput[]
+  updateMany?: Prisma.OrderUpdateManyWithWhereWithoutTableSessionInput | Prisma.OrderUpdateManyWithWhereWithoutTableSessionInput[]
+  deleteMany?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
 }
 
 export type OrderCreateNestedOneWithoutOrderProductsInput = {
@@ -386,11 +488,71 @@ export type OrderUpdateOneRequiredWithoutOrderProductsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OrderUpdateToOneWithWhereWithoutOrderProductsInput, Prisma.OrderUpdateWithoutOrderProductsInput>, Prisma.OrderUncheckedUpdateWithoutOrderProductsInput>
 }
 
+export type OrderCreateWithoutTableSessionInput = {
+  name: string
+  total: number
+  date?: Date | string
+  status?: boolean
+  completedAt?: Date | string | null
+  orderProducts?: Prisma.OrderProductsCreateNestedManyWithoutOrderInput
+}
+
+export type OrderUncheckedCreateWithoutTableSessionInput = {
+  id?: number
+  name: string
+  total: number
+  date?: Date | string
+  status?: boolean
+  completedAt?: Date | string | null
+  orderProducts?: Prisma.OrderProductsUncheckedCreateNestedManyWithoutOrderInput
+}
+
+export type OrderCreateOrConnectWithoutTableSessionInput = {
+  where: Prisma.OrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrderCreateWithoutTableSessionInput, Prisma.OrderUncheckedCreateWithoutTableSessionInput>
+}
+
+export type OrderCreateManyTableSessionInputEnvelope = {
+  data: Prisma.OrderCreateManyTableSessionInput | Prisma.OrderCreateManyTableSessionInput[]
+  skipDuplicates?: boolean
+}
+
+export type OrderUpsertWithWhereUniqueWithoutTableSessionInput = {
+  where: Prisma.OrderWhereUniqueInput
+  update: Prisma.XOR<Prisma.OrderUpdateWithoutTableSessionInput, Prisma.OrderUncheckedUpdateWithoutTableSessionInput>
+  create: Prisma.XOR<Prisma.OrderCreateWithoutTableSessionInput, Prisma.OrderUncheckedCreateWithoutTableSessionInput>
+}
+
+export type OrderUpdateWithWhereUniqueWithoutTableSessionInput = {
+  where: Prisma.OrderWhereUniqueInput
+  data: Prisma.XOR<Prisma.OrderUpdateWithoutTableSessionInput, Prisma.OrderUncheckedUpdateWithoutTableSessionInput>
+}
+
+export type OrderUpdateManyWithWhereWithoutTableSessionInput = {
+  where: Prisma.OrderScalarWhereInput
+  data: Prisma.XOR<Prisma.OrderUpdateManyMutationInput, Prisma.OrderUncheckedUpdateManyWithoutTableSessionInput>
+}
+
+export type OrderScalarWhereInput = {
+  AND?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
+  OR?: Prisma.OrderScalarWhereInput[]
+  NOT?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
+  id?: Prisma.IntFilter<"Order"> | number
+  name?: Prisma.StringFilter<"Order"> | string
+  total?: Prisma.FloatFilter<"Order"> | number
+  date?: Prisma.DateTimeFilter<"Order"> | Date | string
+  status?: Prisma.BoolFilter<"Order"> | boolean
+  completedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
+  tableSessionId?: Prisma.StringFilter<"Order"> | string
+}
+
 export type OrderCreateWithoutOrderProductsInput = {
   name: string
   total: number
   date?: Date | string
   status?: boolean
+  completedAt?: Date | string | null
+  tableSession: Prisma.TableSessionCreateNestedOneWithoutOrdersInput
 }
 
 export type OrderUncheckedCreateWithoutOrderProductsInput = {
@@ -399,6 +561,8 @@ export type OrderUncheckedCreateWithoutOrderProductsInput = {
   total: number
   date?: Date | string
   status?: boolean
+  completedAt?: Date | string | null
+  tableSessionId: string
 }
 
 export type OrderCreateOrConnectWithoutOrderProductsInput = {
@@ -422,6 +586,8 @@ export type OrderUpdateWithoutOrderProductsInput = {
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tableSession?: Prisma.TableSessionUpdateOneRequiredWithoutOrdersNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutOrderProductsInput = {
@@ -430,6 +596,45 @@ export type OrderUncheckedUpdateWithoutOrderProductsInput = {
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  tableSessionId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type OrderCreateManyTableSessionInput = {
+  id?: number
+  name: string
+  total: number
+  date?: Date | string
+  status?: boolean
+  completedAt?: Date | string | null
+}
+
+export type OrderUpdateWithoutTableSessionInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  total?: Prisma.FloatFieldUpdateOperationsInput | number
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  orderProducts?: Prisma.OrderProductsUpdateManyWithoutOrderNestedInput
+}
+
+export type OrderUncheckedUpdateWithoutTableSessionInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  total?: Prisma.FloatFieldUpdateOperationsInput | number
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  orderProducts?: Prisma.OrderProductsUncheckedUpdateManyWithoutOrderNestedInput
+}
+
+export type OrderUncheckedUpdateManyWithoutTableSessionInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  total?: Prisma.FloatFieldUpdateOperationsInput | number
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -469,6 +674,9 @@ export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   total?: boolean
   date?: boolean
   status?: boolean
+  completedAt?: boolean
+  tableSessionId?: boolean
+  tableSession?: boolean | Prisma.TableSessionDefaultArgs<ExtArgs>
   orderProducts?: boolean | Prisma.Order$orderProductsArgs<ExtArgs>
   _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
@@ -479,6 +687,9 @@ export type OrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   total?: boolean
   date?: boolean
   status?: boolean
+  completedAt?: boolean
+  tableSessionId?: boolean
+  tableSession?: boolean | Prisma.TableSessionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
 export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -487,6 +698,9 @@ export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   total?: boolean
   date?: boolean
   status?: boolean
+  completedAt?: boolean
+  tableSessionId?: boolean
+  tableSession?: boolean | Prisma.TableSessionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
 export type OrderSelectScalar = {
@@ -495,19 +709,27 @@ export type OrderSelectScalar = {
   total?: boolean
   date?: boolean
   status?: boolean
+  completedAt?: boolean
+  tableSessionId?: boolean
 }
 
-export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "total" | "date" | "status", ExtArgs["result"]["order"]>
+export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "total" | "date" | "status" | "completedAt" | "tableSessionId", ExtArgs["result"]["order"]>
 export type OrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tableSession?: boolean | Prisma.TableSessionDefaultArgs<ExtArgs>
   orderProducts?: boolean | Prisma.Order$orderProductsArgs<ExtArgs>
   _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type OrderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type OrderIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type OrderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tableSession?: boolean | Prisma.TableSessionDefaultArgs<ExtArgs>
+}
+export type OrderIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tableSession?: boolean | Prisma.TableSessionDefaultArgs<ExtArgs>
+}
 
 export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Order"
   objects: {
+    tableSession: Prisma.$TableSessionPayload<ExtArgs>
     orderProducts: Prisma.$OrderProductsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -516,6 +738,8 @@ export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     total: number
     date: Date
     status: boolean
+    completedAt: Date | null
+    tableSessionId: string
   }, ExtArgs["result"]["order"]>
   composites: {}
 }
@@ -910,6 +1134,7 @@ readonly fields: OrderFieldRefs;
  */
 export interface Prisma__OrderClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  tableSession<T extends Prisma.TableSessionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TableSessionDefaultArgs<ExtArgs>>): Prisma.Prisma__TableSessionClient<runtime.Types.Result.GetResult<Prisma.$TableSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   orderProducts<T extends Prisma.Order$orderProductsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$orderProductsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderProductsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -945,6 +1170,8 @@ export interface OrderFieldRefs {
   readonly total: Prisma.FieldRef<"Order", 'Float'>
   readonly date: Prisma.FieldRef<"Order", 'DateTime'>
   readonly status: Prisma.FieldRef<"Order", 'Boolean'>
+  readonly completedAt: Prisma.FieldRef<"Order", 'DateTime'>
+  readonly tableSessionId: Prisma.FieldRef<"Order", 'String'>
 }
     
 
@@ -1199,6 +1426,10 @@ export type OrderCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    */
   data: Prisma.OrderCreateManyInput | Prisma.OrderCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1269,6 +1500,10 @@ export type OrderUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extension
    * Limit how many Orders to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OrderIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

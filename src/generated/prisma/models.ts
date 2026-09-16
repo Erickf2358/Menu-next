@@ -11,5 +11,6 @@
 export type * from './models/Category'
 export type * from './models/Product'
 export type * from './models/Order'
+export type * from './models/TableSession'
 export type * from './models/OrderProducts'
 export type * from './commonInputTypes'

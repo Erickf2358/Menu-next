@@ -33,6 +33,11 @@ export type Product = Prisma.ProductModel
  */
 export type Order = Prisma.OrderModel
 /**
+ * Model TableSession
+ * 
+ */
+export type TableSession = Prisma.TableSessionModel
+/**
  * Model OrderProducts
  * 
  */

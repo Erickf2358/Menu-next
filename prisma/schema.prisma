@@ -37,7 +37,21 @@ model Order {
   total          Float
   date           DateTime        @default(now())
   status         Boolean         @default(false)
+  completedAt    DateTime?
+  tableSessionId String
+  tableSession   TableSession    @relation(fields: [tableSessionId], references: [id])
   orderProducts  OrderProducts[]
+}
+
+model TableSession {
+  id          String    @id @default(cuid())
+  tableNumber Int
+  createdAt   DateTime  @default(now())
+  expiresAt   DateTime
+  closedAt    DateTime?
+  orders      Order[]
+
+  @@index([tableNumber])
 }
 
 model OrderProducts {

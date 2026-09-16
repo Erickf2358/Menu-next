@@ -2,6 +2,7 @@
 
 import { prisma } from "@/src/lib/prisma";
 import { OrderSchema } from "@/src/schema/lib";
+import { getActiveTableSessionId } from "@/actions/table-session-actions";
 
 type OrderItemInput = {
   productId: number;
@@ -36,10 +37,19 @@ export async function createOrder(
     return { error: "El total no coincide con el precio de los productos" };
   }
 
+  const tableSessionId = await getActiveTableSessionId();
+  if (!tableSessionId) {
+    return {
+      error:
+        "Tu sesión de mesa expiró o no es válida. Vuelve a ingresar tu número de mesa.",
+    };
+  }
+
   await prisma.order.create({
     data: {
       name,
       total: realTotal,
+      tableSessionId,
       orderProducts: {
         create: items.map((item) => ({
           productId: item.productId,

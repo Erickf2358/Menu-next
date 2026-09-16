@@ -54,6 +54,7 @@ export const ModelName = {
   Category: 'Category',
   Product: 'Product',
   Order: 'Order',
+  TableSession: 'TableSession',
   OrderProducts: 'OrderProducts'
 } as const
 
@@ -99,10 +100,23 @@ export const OrderScalarFieldEnum = {
   name: 'name',
   total: 'total',
   date: 'date',
-  status: 'status'
+  status: 'status',
+  completedAt: 'completedAt',
+  tableSessionId: 'tableSessionId'
 } as const
 
 export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const TableSessionScalarFieldEnum = {
+  id: 'id',
+  tableNumber: 'tableNumber',
+  createdAt: 'createdAt',
+  expiresAt: 'expiresAt',
+  closedAt: 'closedAt'
+} as const
+
+export type TableSessionScalarFieldEnum = (typeof TableSessionScalarFieldEnum)[keyof typeof TableSessionScalarFieldEnum]
 
 
 export const OrderProductsScalarFieldEnum = {
@@ -130,4 +144,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
